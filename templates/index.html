@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta lang="tr">
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="/static/stlyes.css">
+</head>
+
+<body>
+    <main>
+        <div id="SearchBox">
+            <form method="post">
+                <input type="text" name="location" inputmode="latin-name">
+                <button type="submit">&#x1F50D;</button>
+            </form>
+        </div>
+        {% if weather_data %}
+        <div class="current">
+            <div class = "WeatherBox">
+                <div class="WeatherText">{{ weather_data.location.name }}, {{ weather_data.location.region }}</div>
+                <div class="WeatherText">Current</div>
+                <img class = "WeatherReport" src="//cdn.weatherapi.com/weather/64x64/day/113.png">
+                <div class="WeatherText">{{ weather_data.current.temp_c }}°C</div>
+            </div>
+        </div>
+        <div class="next5">
+            {% for day in weather_data.forecast.forecastday %}
+            <div class="WeatherBox">
+                <div class="WeatherText">{{ day.date.split('-')[2] }} / {{ day.date.split('-')[1] }}</div>
+                <img class = "WeatherReport" src="{{ day.day.condition.icon }}">
+                <div class="WeatherText">{{ day.day.maxtemp_c }}°C / {{ day.day.mintemp_c }}°C</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </main>
+</body>
+<!DOCTYPE html>
