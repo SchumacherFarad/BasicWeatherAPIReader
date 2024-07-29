@@ -3,7 +3,7 @@
 A basic weather forecast website programmed with flask.
 
 
-## Bilgisayarınızda Çalıştırın
+## How to run the website on your computer
 
 Clone the Project
 
