@@ -11,7 +11,7 @@ KEY = os.getenv("API_KEY")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    weather_data = None
+    weather_data = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key={KEY}&q=London&days=5&aqi=no&alerts=no").json()
     if request.method == 'POST':
         location = request.form['location']
         request_url = f"http://api.weatherapi.com/v1/forecast.json?key={KEY}&q={location}&days=5&aqi=no&alerts=no"
